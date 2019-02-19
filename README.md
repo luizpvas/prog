@@ -1,20 +1,24 @@
 # Prog
 
-To start your Phoenix server:
+# Tasks
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+- A principio acho legal duas páginas:
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+  - home
+  - vídeos
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+- Na página de vídeos, eu vou carregar os registros de uma tabela no banco de dados.
 
-## Learn more
+Para armazenar os vídeos, eu vou criar um módulo chamado Courses/Lesson
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+- title
+- description
+- is_public
+- youtube_url\*
+- categories (array of strings)
+
+# Primeiros vídeos
+
+- Gzip usando nginx vs gzip usando phoenix:digest
+- Removendo classes não utilizadas com purge-css
+- Fazendo cache da página de vídeos
