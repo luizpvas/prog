@@ -12,5 +12,6 @@ defmodule Prog.SlugTest do
     assert Prog.Slug.to_slug("um/dois")     == "um-dois"
     assert Prog.Slug.to_slug("um'dois")     == "um-dois"
     assert Prog.Slug.to_slug("um \"dois\"") == "um-dois"
+    assert Prog.Slug.to_slug("Olá - tudo")  == "olá-tudo"
   end
 end

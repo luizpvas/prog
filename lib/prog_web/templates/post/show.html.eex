@@ -1,0 +1,27 @@
+<div class="content mx-auto">
+  <h1 class="text-blue mt-6 mb-4"><%= @post.title %></h1>
+</div>
+
+<div class="bg-blue-lighter w-full">
+  <div class="content mx-auto">
+    <iframe class="mx-auto block" style="width: 100%; height: 450px;" src="https://www.youtube.com/embed/suOzNeMJXl0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div class="content mx-auto">
+  <div class="bg-white rounded border p-3 mt-6">
+    <div class="flex items-center">
+      <div class="uppercase font-bold text-grey-dark text-sm mr-auto">
+        <%= date_release(@post.inserted_at) %>
+        -
+        <%= gettext("Episódio") %> <%= @post.id %>
+      </div>
+
+      <%= post_tags(@post.tags) %>
+    </div>
+
+    <div class="mt-2">
+      <%= @post.body %>
+    </div>
+  </div>
+</div>

@@ -61,3 +61,55 @@
  * @import "utilities/skew-transforms";
  */
 
+.content {
+  max-width: 740px;
+}
+
+.youtube-lazy-load-preview {
+  width: 100%;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.youtube-iframe {
+  width: 100%;
+  height: 350px;
+}
+
+.youtube-play-button {
+  position: relative;
+  width: 90px;
+  height: 60px;
+  background-color: #333;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  opacity: 0.8;
+  border-radius: 6px;
+}
+
+.youtube-play-button:before {
+  content: "";
+  border-style: solid;
+  border-width: 15px 0 15px 26px;
+  border-color: transparent transparent transparent #fff;
+}
+
+.youtube-play-button {
+  cursor: pointer;
+}
+
+.youtube-play-button:before {
+  position: absolute;
+}
+
+.youtube-play-button:before {
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}

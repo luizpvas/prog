@@ -41,6 +41,8 @@ defmodule ProgWeb do
 
       import ProgWeb.ErrorHelpers
       import ProgWeb.Gettext
+      import ProgWeb.DateHelpers
+      import ProgWeb.TagHelpers
       alias ProgWeb.Router.Helpers, as: Routes
     end
   end

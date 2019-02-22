@@ -1,35 +1,41 @@
-<section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>A productive web framework that<br/>does not compromise speed and maintainability.</p>
-</section>
+<div class="mx-auto px-6 md:px-0" style="max-width: 740px;">
+  <div class="text-center mt-6">
+    <img src="<%= Routes.static_path(@conn, "/images/logo.svg") %>" class="w-24">
+  </div>
 
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.4/CHANGELOG.md">v1.4 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-    </ul>
-  </article>
-</section>
+  <div class="text-grey-darkest mt-6 mb-6 text-center italic">
+    <%= gettext "Textos sobre performance, escalabidade e programação funcional." %>
+    <%= gettext "Se você se interessa por algum desses tópicos, está no lugar certo." %>
+  </div>
+
+
+  <%= for post <- @posts do %>
+    <%= render ProgWeb.PostView , "_post.html", post: post, conn: @conn %>
+  <% end %>
+
+  <div class="text-center mt-6">
+    <a class="text-blue" href="<%= Routes.post_path(@conn, :index) %>">
+      <%= gettext("Todos os episódios »") %>
+    </a>
+  </div>
+</div>
+
+<div class="mt-8 py-8 bg-indigo text-white" id="about-me">
+  <div class="mx-auto px-6 md:px-0" style="max-width: 740px;">
+    <div class="block md:flex md:items-center text-center md:text-left">
+      <a class="inline-block mr-4 flex-no-shrink" style="width: 90px;" href="https://twitter.com/luizpvasc">
+        <img class="block rounded-full border border-white" style="width: 90px;" src="<%= Routes.static_path(@conn, "/images/profile_picture.jpg") %>">
+      </a>
+
+      <div>
+        <div class="uppercase font-bold text-indigo-lighter"><%= gettext("Sobre mim") %></div>
+
+        <%= gettext("Olá, me chamo Luiz Paulo.") %>
+        <%= gettext("Sou formado em Sistemas de Informação com especialização em Mineração de dados. Sim, diplomas são supervalorizados.") %>
+        <%= gettext("Atualmente sou CTO na") %>
+        <a class="text-white" href="http://aloweb.com.br">aloweb</a>
+        <%= gettext("implementando sistemas de comunicação em tempo real.") %>
+      </div>
+    </div>
+  </div>
+</div>

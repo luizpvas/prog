@@ -20,6 +20,7 @@ defmodule ProgWeb.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       alias ProgWeb.Router.Helpers, as: Routes
+      import Prog.Factory
 
       # The default endpoint for testing
       @endpoint ProgWeb.Endpoint

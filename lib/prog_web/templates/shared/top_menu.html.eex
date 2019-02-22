@@ -1,0 +1,11 @@
+<div class="mx-auto flex mt-2" style="max-width: 740px;">
+  <div class="mr-auto"></div>
+
+  <a class="font-bold text-blue hover:text-blue-dark mr-3" href="/">
+    <%= gettext("Home") %>
+  </a>
+
+  <a class="font-bold text-blue hover:text-blue-dark" href="<%= Routes.post_path(@conn, :index) %>">
+    <%= gettext("Todos os posts »") %>
+  </a>
+</div>

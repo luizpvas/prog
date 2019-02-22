@@ -22,6 +22,7 @@ defmodule Prog.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Prog.DataCase
+      import Prog.Factory
     end
   end
 

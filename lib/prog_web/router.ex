@@ -17,6 +17,8 @@ defmodule ProgWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/posts", PostController, :index
+    get "/posts/:slug", PostController, :show
   end
 
   # Other scopes may use custom stacks.

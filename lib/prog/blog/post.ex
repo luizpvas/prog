@@ -1,30 +1,29 @@
-defmodule Prog.Education.Video do
+defmodule Prog.Blog.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "education_videos" do
-    field :slug
-    field :title
-    field :description
-    field :is_public, :boolean
-    field :youtube_url
-    field :vimeo_url
+  schema "blog_posts" do
+    field :body, :string
+    field :title, :string
+    field :slug, :string
+    field :published_at, :utc_datetime
+    field :tags, {:array, :string}
     timestamps()
   end
 
   @doc """
-  Builds a changeset for inserting or updating video records.
+  Builds a changeset for inserting or updating a blog post.
 
-  ## Examples
-
-      iex> Video.changeset(%Video{}, attrs)
+  ## Example
+  
+      iex> Post.changeset(%Post{}, attributes)
       %Ecto.Changeset{...}
 
   """
-  def changeset(video, attrs) do
-    video
-    |> cast(attrs, [:title, :description, :is_public, :youtube_url, :vimeo_url])
-    |> validate_required([:title, :description])
+  def changeset(post, attrs) do
+    post
+    |> cast(attrs, [:title, :body, :published_at, :tags])
+    |> validate_required([:title, :body])
     |> generate_slug_from_title()
     |> unique_constraint(:slug)
   end

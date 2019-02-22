@@ -1,0 +1,16 @@
+<div class="border rounded bg-white mt-3 p-3">
+  <div class="flex items-center">
+    <div class="uppercase font-bold text-grey-dark text-sm mr-auto">
+      <%= date_release(@post.inserted_at) %>
+      -
+      <%= gettext("Episódio") %> <%= @post.id %>
+    </div>
+
+    <%= post_tags(@post.tags) %>
+  </div>
+
+  <a href="<%= Routes.post_path(@conn, :show, @post.slug) %>" class="no-underline text-grey-darkest">
+    <h2 class="text-blue font-bold my-1"><%= @post.title %></h2>
+    <%= @post.body %>
+  </a>
+</div>
