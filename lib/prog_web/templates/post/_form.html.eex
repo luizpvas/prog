@@ -1,0 +1,17 @@
+<label>
+  <%= gettext("Título") %>
+  <%= text_input @f, :title %>
+  <%= error_tag @f, :title %>
+</label>
+
+<label>
+  <%= gettext("Conteúdo") %>
+  <%= textarea @f, :body %>
+  <%= error_tag @f, :body %>
+</label>
+
+<label>
+  <%= gettext("Data de publicação") %>
+  <%= date_select @f, :published_at %>
+  <%= error_tag @f, :published_at %>
+</label>

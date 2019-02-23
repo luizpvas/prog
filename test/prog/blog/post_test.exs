@@ -40,9 +40,18 @@ defmodule Prog.Blog.PostTest do
     assert changeset.errors[:slug]
   end
 
-  test "list_latest_posts/1 - lists the latest posts in the database" do
+  test "create_post/1 - compiles markdown to html" do
+    {:ok, post} = Blog.create_post(%{
+      "title" => "My first post",
+      "body" => "This is *nice*"
+    })
+
+    assert post.body_html == "<p>This is <em>nice</em></p>\n"
+  end
+
+  test "list_latest_published_posts/1 - lists the latest posts in the database" do
     posts = insert_list(10, :post)
-    latest_posts = Blog.list_latest_posts(5)
+    latest_posts = Blog.list_latest_published_posts(5)
 
     posts_ids = posts |> Enum.reverse() |> Enum.map(& &1.id) |> Enum.slice(0..4)
     latest_posts_ids = Enum.map(latest_posts, & &1.id)

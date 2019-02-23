@@ -8,9 +8,21 @@ defmodule Prog.Blog do
     |> Repo.insert()
   end
 
-  def list_latest_posts(limit) do
-    query = from p in Post, order_by: [desc: :id], limit: ^limit
-    Repo.all(query)
+  @doc """
+  Fetches the latest published posts from most recent to oldest.
+
+  ## Examples
+
+      iex> Blog.list_latest_published_posts(3)
+      [%Post{...}, %Post{...}, %Post{...}]
+
+  """
+  def list_latest_published_posts(limit) do
+    Post
+    |> where([p], not is_nil(p.published_at))
+    |> order_by([p], [desc: :id])
+    |> limit([p], ^limit)
+    |> Repo.all()
   end
 
   def find_post_by_slug(slug) do
@@ -31,5 +43,19 @@ defmodule Prog.Blog do
   """
   def count_posts() do
     Repo.one(from p in Post, select: count(p))
+  end
+
+  @doc """
+  Returns a changeset for the given post, or a new post
+  if none is given. This is used to render forms in the front-end.
+
+  ## Examples
+  
+      iex> Blog.post_changeset()
+      %Ecto.Changeset{...}
+
+  """
+  def post_changeset(post \\ %Post{}) do
+    Post.changeset(post, %{})
   end
 end

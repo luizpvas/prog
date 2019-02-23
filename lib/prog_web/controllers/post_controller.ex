@@ -9,7 +9,7 @@ defmodule ProgWeb.PostController do
   Lists all available posts on the database.
   """
   def index(conn, _params) do
-    posts = Blog.list_latest_posts(500)
+    posts = Blog.list_latest_published_posts(500)
     render(conn, "index.html", posts: posts)
   end
 
@@ -19,7 +19,7 @@ defmodule ProgWeb.PostController do
   Shows the create post form.
   """
   def new(conn, _params) do
-    render(conn, "new.html")
+    render(conn, "new.html", changeset: Blog.post_changeset())
   end
 
   @doc """
@@ -29,13 +29,11 @@ defmodule ProgWeb.PostController do
   """
   def create(conn, params) do
     case Blog.create_post(params) do
-      {:ok, post} ->
-        conn
-        |> redirect(to: Routes.post_path(conn, :index))
+      {:ok, _post} ->
+        redirect(conn, to: Routes.post_path(conn, :index))
 
       {:error, changeset} ->
-        conn
-        |> render("new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset)
     end
   end
 

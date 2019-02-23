@@ -1,0 +1,6 @@
+<div>
+  <%= form_for @changeset, Routes.post_path(@conn, :create), fn f -> %>
+    <%= render "_form.html", f: f %>
+    <%= submit gettext("Inserir Post") %>
+  <% end %>
+</div>
