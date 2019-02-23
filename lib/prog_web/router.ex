@@ -17,12 +17,12 @@ defmodule ProgWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/posts", PostController, :index
-    get "/posts/:slug", PostController, :show
+    resources "/posts", PostController
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", ProgWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", ProgWeb do
+    pipe_through :api
+
+    post "/newsletter_subscription", NewsletterSubscriptionController, :create
+  end
 end

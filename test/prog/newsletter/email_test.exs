@@ -2,14 +2,9 @@ defmodule Prog.Newsletter.EmailTest do
   use Prog.DataCase
   alias Prog.Newsletter
 
-  test "create_email - validates uniqueness of email" do
-    {:ok, _email} = Newsletter.create_email(%{
-      "email" => "luiz@exemplo.com"
-    })
-
-    {:error, changeset} = Newsletter.create_email(%{
-      "email" => "luiz@exemplo.com"
-    })
+  test "subscribe/1 - validates uniqueness of email" do
+    {:ok, _email} = Newsletter.subscribe("luiz@exemple.com")
+    {:error, changeset} = Newsletter.subscribe("luiz@exemple.com")
 
     assert changeset.errors[:email]
   end

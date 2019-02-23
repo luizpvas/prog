@@ -7,7 +7,16 @@ defmodule Prog.Newsletter.Email do
     timestamps()
   end
 
-  @doc false
+  @doc """
+  Builds a changeset for inserting or updating an email
+  in the newsletter.
+
+  ## Examples
+
+      iex> Email.changeset(%Email{}, attributes)
+      %Ecto.Changeset{...}
+
+  """
   def changeset(email, attrs) do
     email
     |> cast(attrs, [:email])

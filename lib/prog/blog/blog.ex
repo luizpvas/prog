@@ -19,4 +19,17 @@ defmodule Prog.Blog do
       post -> {:ok, post}
     end
   end
+
+  @doc """
+  Counts the amount of posts in the database.
+
+  ## Example
+  
+      iex> Blog.count_posts()
+      6
+
+  """
+  def count_posts() do
+    Repo.one(from p in Post, select: count(p))
+  end
 end
