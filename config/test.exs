@@ -16,3 +16,9 @@ config :prog, Prog.Repo,
   database: "prog_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# Map of users with admin permission.
+config :prog, :admin_users, %{
+  "luiz@example.com" => "1234"
+}
+

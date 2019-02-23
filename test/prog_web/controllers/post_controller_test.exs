@@ -26,25 +26,35 @@ defmodule ProgWeb.PostControllerTest do
   end
 
   test "GET /posts/new - shows the create post form", %{conn: conn} do
-    conn = get(conn, Routes.post_path(conn, :new))
+    conn =
+      conn
+      |> login_admin()
+      |> get(Routes.post_path(conn, :new))
+
     assert html_response(conn, 200)
   end
 
   test "POST /posts - creates a new post if attributes are valid", %{conn: conn} do
-    conn = post(conn, Routes.post_path(conn, :create, %{
-      "title" => "Interesting post",
-      "body"  => "This is definetly interesting"
-    }))
+    conn =
+      conn
+      |> login_admin()
+      |> post(Routes.post_path(conn, :create, %{
+        "title" => "Interesting post",
+        "body"  => "This is definetly interesting"
+      }))
 
     assert html_response(conn, 302)
     assert Blog.find_post_by_slug("interesting-post")
   end
 
   test "POST /posts - shows validation errors if attributes are invalid", %{conn: conn} do
-    conn = post(conn, Routes.post_path(conn, :create, %{
-      "title" => "",
-      "body"  => ""
-    }))
+    conn =
+      conn
+      |> login_admin()
+      |> post(Routes.post_path(conn, :create, %{
+        "title" => "",
+        "body"  => ""
+      }))
 
     assert html_response(conn, 200)
     assert Blog.count_posts() == 0

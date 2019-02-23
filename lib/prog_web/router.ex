@@ -18,6 +18,7 @@ defmodule ProgWeb.Router do
 
     get "/", PageController, :index
     resources "/posts", PostController
+    resources "/sessions", SessionController, only: [:new, :create]
   end
 
   scope "/api", ProgWeb do

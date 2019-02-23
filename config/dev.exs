@@ -76,3 +76,8 @@ config :prog, Prog.Repo,
   database: "prog_dev",
   hostname: "localhost",
   pool_size: 10
+
+# Map of users with admin permission.
+config :prog, :admin_users, %{
+  "luiz@example.com" => "1234"
+}

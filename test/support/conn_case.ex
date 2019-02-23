@@ -25,15 +25,11 @@ defmodule ProgWeb.ConnCase do
       # The default endpoint for testing
       @endpoint ProgWeb.Endpoint
 
-      def rendered_view(conn, view, template) do
-        if conn.private[:phoenix_view] == view && conn.private[:phoenix_template] == template do
-          true
-        end
-
-        actual_view = conn.private[:phoenix_view]
-        actual_template = conn.private[:phoenix_template]
-
-        raise "Did not render expected view. Got: #{actual_view} #{actual_template}"
+      def login_admin(conn) do
+        post(conn, Routes.session_path(conn, :create), %{
+          "email" => "luiz@example.com",
+          "password" => "1234"
+        })
       end
     end
   end

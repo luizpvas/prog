@@ -23,6 +23,7 @@ defmodule ProgWeb do
 
       import Plug.Conn
       import ProgWeb.Gettext
+      import ProgWeb.AuthorizationHelpers
       alias ProgWeb.Router.Helpers, as: Routes
     end
   end

@@ -1,7 +1,7 @@
 defmodule ProgWeb.PostController do
   use ProgWeb, :controller
   alias Prog.Blog
-  action_fallback(ProgWeb.FallbackController)
+  action_fallback ProgWeb.FallbackController
 
   @doc """
   GET /posts
@@ -19,6 +19,8 @@ defmodule ProgWeb.PostController do
   Shows the create post form.
   """
   def new(conn, _params) do
+    authorize_admin!(conn)
+
     render(conn, "new.html", changeset: Blog.post_changeset())
   end
 
@@ -28,6 +30,8 @@ defmodule ProgWeb.PostController do
   Attempts to create a new post.
   """
   def create(conn, params) do
+    authorize_admin!(conn)
+
     case Blog.create_post(params) do
       {:ok, _post} ->
         redirect(conn, to: Routes.post_path(conn, :index))
