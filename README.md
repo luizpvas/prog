@@ -1,16 +1,13 @@
 # Prog
 
-# Tasks
+- Verificar tags SEO para o google
+	- Título do post
 
-- A principio acho legal duas páginas:
+- Implementar pesquisa por posts
+	- title
+	- tags
 
-  - /
-  - /videos
-  - /videos/:slug
-
-- Na página de vídeos, eu vou carregar os registros de uma tabela no banco de dados.
-
-# Primeiros vídeos
+# Primeiros posts
 
 - Subir site
 
@@ -21,7 +18,7 @@
   - Fazer alguns testes mostrando a diferença
   - Quem está fazendo a descompressão? R: chrome, firefox, edge.
   - Quem está fazendo a compressão? Nginx. Em que momento? Para cada requisição.
-  - Gerar um arquivo gzip uma única vez pelo phoenix e habilitar gzip_static no nginx
+  - Gerar um arquivo gzip uma única vez pelo phoenix e habilitar gzip\_static no nginx
   - Mostrar que não fez muita diferença no tempo de resposta.
 - Removendo classes não utilizadas com purge-css
   - Nós podemos ajudar ainda mais o gzip e remover aquilo que não estamos usando
@@ -32,7 +29,7 @@
   - Newsletter avisando quando tiver vídeo novo
   - Armazenar os emails
     - email (unique)
-    - canceled_at (null)
+    - canceled\_at (null)
   - Mostrar widget na página inicial para a pessoa preencher o email e se inscrever
   - Próximo ep: mandando emails
 

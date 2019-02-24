@@ -5,6 +5,7 @@ defmodule Prog.Blog.PostTest do
   test "create_post/1 - creates a record with valid attrs" do
     {:ok, video} = Blog.create_post(%{
       "title" => "My first video",
+      "description" => "This is a description",
       "body"  => "This is an interesting video",
       "tags"  => ["elixir", "phoenix"]
     })
@@ -29,12 +30,14 @@ defmodule Prog.Blog.PostTest do
   test "create_post/1 - validates slug is unique" do
     {:ok, _post} = Blog.create_post(%{
       "title" => "My first video",
-      "body"  => "This is a description",
+      "description" => "This is a description",
+      "body"  => "This is a description"
     })
 
     {:error, changeset} = Blog.create_post(%{
       "title" => "My first video",
-      "body"  => "This is a description",
+      "description" => "This is a description",
+      "body"  => "This is a description"
     })
 
     assert changeset.errors[:slug]
@@ -43,6 +46,7 @@ defmodule Prog.Blog.PostTest do
   test "create_post/1 - compiles markdown to html" do
     {:ok, post} = Blog.create_post(%{
       "title" => "My first post",
+      "description" => "This is a description",
       "body" => "This is *nice*"
     })
 

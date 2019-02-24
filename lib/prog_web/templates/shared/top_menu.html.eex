@@ -1,8 +1,8 @@
 <div class="mx-auto flex mt-2" style="max-width: 740px;">
   <div class="italic text-grey-darker mr-auto">
     <%= if logged_in?(@conn) do %>
-      <%= gettext("Logado com") %>
-      <%= current_user_email(@conn) %>
+      <%= gettext("Autenticado como") %>
+      <strong><%= current_user_email(@conn) %></strong>
     <% end %>
   </div>
 

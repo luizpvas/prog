@@ -18,9 +18,11 @@ import Turbolinks from "turbolinks";
 Turbolinks.start();
 
 import loadYoutubeLazyLoad from './components/youtube_lazy_load';
-import loadNewsletterSubscription from './components/newsletter_subscription';
+import loadMarkdownEditor from './components/markdown_editor';
+import loadImageUploader from './components/image_uploader';
 
 document.addEventListener("turbolinks:load", () => {
   loadYoutubeLazyLoad();
-  loadNewsletterSubscription();
+  loadMarkdownEditor();
+	loadImageUploader();
 }); 

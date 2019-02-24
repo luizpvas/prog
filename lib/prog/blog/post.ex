@@ -4,6 +4,7 @@ defmodule Prog.Blog.Post do
 
   schema "blog_posts" do
     field :title, :string
+    field :description, :string
     field :body, :string
     field :body_html, :string
     field :slug, :string
@@ -23,8 +24,8 @@ defmodule Prog.Blog.Post do
   """
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:title, :body, :published_at, :tags])
-    |> validate_required([:title, :body])
+    |> cast(attrs, [:title, :description, :body, :published_at, :tags])
+    |> validate_required([:title, :description, :body])
     |> generate_slug_from_title()
     |> unique_constraint(:slug)
     |> compile_markdown()

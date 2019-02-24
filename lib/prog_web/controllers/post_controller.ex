@@ -32,7 +32,7 @@ defmodule ProgWeb.PostController do
   def create(conn, params) do
     authorize_admin!(conn)
 
-    case Blog.create_post(fix_published_at(params["post"])) do
+    case Blog.create_post(fix_post_params(params["post"])) do
       {:ok, _post} ->
         redirect(conn, to: Routes.post_path(conn, :index))
 
@@ -77,7 +77,7 @@ defmodule ProgWeb.PostController do
   """
   def update(conn, params) do
     with {:ok, post} <- Blog.find_post_by_slug(params["id"]) do
-      case Blog.update_post(post, params["post"]) do
+      case Blog.update_post(post, fix_post_params(params["post"])) do
         {:ok, post} ->
           conn
           |> put_flash(:success, gettext("Post atualizado com sucesso!"))
@@ -90,10 +90,23 @@ defmodule ProgWeb.PostController do
     end
   end
 
+  defp fix_post_params(params) do
+    params
+    |> fix_published_at()
+    |> fix_tags()
+  end
+
   # Appends the time part in the given published_at params.
   # All posts are assumed to be posted 12:00:00
   defp fix_published_at(%{"published_at" => published_at} = params) do
     Map.put(params, "published_at", published_at <> " 12:00:00")
   end
   defp fix_published_at(params), do: params
+
+  # Splits the tags into an array of strings.
+  defp fix_tags(%{"tags" => tags} = params) do
+    tags = String.split(tags, ",") |> Enum.map(&String.trim/1)
+    Map.put(params, "tags", tags)
+  end
+  defp fix_tags(params), do: params
 end

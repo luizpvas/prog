@@ -21,17 +21,22 @@
       <div class="italic text-grey-darker">Nenhum spam será enviado, prometo!</div>
     </div>
 
-    <%= form_for @conn, Routes.newsletter_subscription_path(@conn, :create), [class: "flex mt-3", target: "_blank"], fn f -> %>
-      <input class="w-3/4 p-2 border border-grey rounded-l" type="email" name="email" placeholder="luiz@example.com">
-      <button class="w-1/4 bg-blue rounded-r text-white uppercase font-bold text-sm" type="submit">
-        <%= gettext("Inscreva-se") %>
-      </button>
+    <%= form_for @conn,
+Routes.newsletter_subscription_path(@conn, :create),
+        [class: "flex mt-3", target: "_blank"], 
+        fn f -> %>
+      <%= text_input f, :email,
+          class: "w-3/4 p-2 border border-grey rounded-l",
+          placeholder: "luiz@example.com" %>
+
+      <%= submit gettext("Inscreva-se"),
+          class: "w-1/4 bg-blue rounded-r text-white uppercase font-bold text-sm" %>
     <% end %>
   </div>
 
   <div class="text-center mt-6">
     <a class="text-blue" href="<%= Routes.post_path(@conn, :index) %>">
-      <%= gettext("Todos os episódios »") %>
+      <%= gettext("Todos os posts »") %>
     </a>
   </div>
 </div>

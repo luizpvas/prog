@@ -4,6 +4,7 @@ defmodule Prog.Repo.Migrations.CreateBlogPosts do
   def change do
     create table(:blog_posts) do
       add :title, :string
+      add :description, :text, comment: "short description of the post"
       add :body, :text, comment: "original markdown content"
       add :body_html, :text, comment: "compiled html from markdown"
       add :slug, :string

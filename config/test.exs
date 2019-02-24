@@ -22,3 +22,6 @@ config :prog, :admin_users, %{
   "luiz@example.com" => "1234"
 }
 
+# Configure the app's URL in order to generate
+# full URLs for assets.
+config :prog, :app_url, "http://localhost:4000"

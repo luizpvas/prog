@@ -1,5 +1,9 @@
 .field {
-	@apply .block .font-bold .uppercase .text-grey-darker .mb-4 .text-sm;
+	@apply .block .text-grey-darker .mb-4;
+}
+
+.field .label {
+	@apply .font-bold .uppercase .text-sm;
 }
 
 .field input,select,textarea {

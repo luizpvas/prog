@@ -41,13 +41,16 @@ defmodule ProgWeb.PostControllerTest do
       |> post(Routes.post_path(conn, :create, %{
         "post" => %{
           "title" => "Interesting post",
-          "body"  => "This is definetly interesting",
-          "published_at" => "2019-08-30"
+          "description" => "A cool description",
+          "body" => "This is definetly interesting",
+          "published_at" => "2019-08-30",
+          "tags" => "elixir, phoenix"
         }
       }))
 
     assert html_response(conn, 302)
-    assert Blog.find_post_by_slug("interesting-post")
+    assert {:ok, blog} = Blog.find_post_by_slug("interesting-post")
+    assert blog.tags == ["elixir", "phoenix"]
   end
 
   test "POST /posts - shows validation errors if attributes are invalid", %{conn: conn} do
@@ -57,6 +60,7 @@ defmodule ProgWeb.PostControllerTest do
       |> post(Routes.post_path(conn, :create, %{
         "post" => %{
           "title" => "",
+          "description" => "",
           "body"  => ""
         }
       }))

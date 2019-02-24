@@ -1,17 +1,47 @@
 <label class="field">
-  <%= gettext("Título") %>
+  <span class="label">
+    <%= gettext("Título") %>
+  </span>
+  &mdash;
+  <span class="italic text-sm text-red-dark"><%= gettext("Cuidado ao editor o título: não é legal mudar o slug da URL.") %></span>
+
   <%= text_input @f, :title %>
   <%= error_tag @f, :title %>
 </label>
 
 <label class="field">
-  <%= gettext("Conteúdo") %>
+  <span class="label"><%= gettext("Descrição") %></span>
+  <%= textarea @f, :description %>
+  <%= error_tag @f, :description %>
+</label>
+
+<label class="field">
+  <span class="label"><%= gettext("Tags") %></span>
+  <%= text_input @f, :tags, value: tags_input_value(@f.data.tags) %>
+  <span class="italic text-sm">
+    <%= gettext("Tags mais utilizadas:") %>
+    <%= Enum.join(allowed_tags(), ", ") %>
+  </span>
+</label>
+
+<div class="border bg-blue-lightest mt-1 mb-4 p-2" data-component="image-uploader">
+  <div class="uppercase text-sm font-bold text-blue"><%= gettext("Upload de imagem") %></div>
+
+  <label>
+    <input type="file" name="file">
+  </label>
+
+  <div data-target="output"></div>
+</div>
+
+<label class="field" data-component="markdown-editor">
+  <span class="label"><%= gettext("Conteúdo") %></span>
   <%= textarea @f, :body %>
   <%= error_tag @f, :body %>
 </label>
 
 <label class="field">
-  <%= gettext("Data de publicação") %>
-  <%= date_input @f, :published_at %>
+  <span class="label"><%= gettext("Data de publicação") %></span>
+  <%= date_input @f, :published_at, value: date_ymd(@f.data.published_at) %>
   <%= error_tag @f, :published_at %>
 </label>

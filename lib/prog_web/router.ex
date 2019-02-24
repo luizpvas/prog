@@ -19,10 +19,11 @@ defmodule ProgWeb.Router do
     get "/", PageController, :index
     resources "/posts", PostController
     resources "/sessions", SessionController, only: [:new, :create]
-    post "/newsletter_subscription", NewsletterSubscriptionController, :create
+    resources "/newsletter_subscription", NewsletterSubscriptionController, only: [:index, :create]
+    post "/images", ImageController, :create
   end
 
-  scope "/api", ProgWeb do
-    pipe_through :api
-  end
+  # scope "/api", ProgWeb do
+  #   pipe_through :api
+  # end
 end
