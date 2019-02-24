@@ -64,4 +64,30 @@ defmodule ProgWeb.PostControllerTest do
     assert html_response(conn, 200)
     assert Blog.count_posts() == 0
   end
+
+  test "GET /posts/:id/edit - renders the edit form", %{conn: conn} do
+    post = insert(:post)
+
+    conn = 
+      conn
+      |> login_admin()
+      |> get(Routes.post_path(conn, :edit, post.slug))
+
+    assert html_response(conn, 200)
+  end
+
+  test "PUT /posts/:id - updates the post record", %{conn: conn} do
+    post = insert(:post)
+
+    conn = 
+      conn
+      |> login_admin()
+      |> put(Routes.post_path(conn, :update, post.slug), %{
+        "post" => %{
+          "title" => "My updated title"
+        }
+      })
+
+    assert redirected_to(conn) == Routes.post_path(conn, :show, "my-updated-title")
+  end
 end

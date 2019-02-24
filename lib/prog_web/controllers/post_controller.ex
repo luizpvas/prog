@@ -52,6 +52,44 @@ defmodule ProgWeb.PostController do
     end
   end
 
+  @doc """
+  GET /posts/:slug/edit
+
+  Renders the edit form.
+  """
+  def edit(conn, params) do
+    authorize_admin!(conn)
+
+    with {:ok, post} <- Prog.Blog.find_post_by_slug(params["id"]) do
+      render(
+        conn, 
+        "edit.html", 
+        post: post,
+        changeset: Blog.post_changeset(post)
+      )
+    end
+  end
+
+  @doc """
+  PUT /posts/:slug
+
+  Attempts to update a post.
+  """
+  def update(conn, params) do
+    with {:ok, post} <- Blog.find_post_by_slug(params["id"]) do
+      case Blog.update_post(post, params["post"]) do
+        {:ok, post} ->
+          conn
+          |> put_flash(:success, gettext("Post atualizado com sucesso!"))
+          |> redirect(to: Routes.post_path(conn, :show, post.slug))
+
+        {:error, changeset} ->
+          conn
+          |> render("edit.html", changeset: changeset, post: post)
+      end
+    end
+  end
+
   # Appends the time part in the given published_at params.
   # All posts are assumed to be posted 12:00:00
   defp fix_published_at(%{"published_at" => published_at} = params) do

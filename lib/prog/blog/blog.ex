@@ -8,6 +8,11 @@ defmodule Prog.Blog do
     |> Repo.insert()
   end
 
+  def update_post(post, attributes) do
+    Post.changeset(post, attributes)
+    |> Repo.update()
+  end
+
   @doc """
   Fetches the latest published posts from most recent to oldest.
 

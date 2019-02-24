@@ -23,7 +23,9 @@
 
     <%= form_for @conn, Routes.newsletter_subscription_path(@conn, :create), [class: "flex mt-3", target: "_blank"], fn f -> %>
       <input class="w-3/4 p-2 border border-grey rounded-l" type="email" name="email" placeholder="luiz@example.com">
-      <button class="w-1/4 bg-blue rounded-r text-white uppercase text-sm" type="submit"><%= gettext("Inscreva-se") %></button>
+      <button class="w-1/4 bg-blue rounded-r text-white uppercase font-bold text-sm" type="submit">
+        <%= gettext("Inscreva-se") %>
+      </button>
     <% end %>
   </div>
 
