@@ -32,7 +32,7 @@ defmodule ProgWeb.PostController do
   def create(conn, params) do
     authorize_admin!(conn)
 
-    case Blog.create_post(params) do
+    case Blog.create_post(fix_published_at(params["post"])) do
       {:ok, _post} ->
         redirect(conn, to: Routes.post_path(conn, :index))
 
@@ -51,4 +51,11 @@ defmodule ProgWeb.PostController do
       render(conn, "show.html", post: post)
     end
   end
+
+  # Appends the time part in the given published_at params.
+  # All posts are assumed to be posted 12:00:00
+  defp fix_published_at(%{"published_at" => published_at} = params) do
+    Map.put(params, "published_at", published_at <> " 12:00:00")
+  end
+  defp fix_published_at(params), do: params
 end

@@ -1,0 +1,11 @@
+<div class="content mx-auto">
+  <div class="bg-white border rounded p-4 text-center mt-8">
+    <h1 class="text-green"><%= gettext("Inscrição confirmada") %></h1>
+    <div class="mt-2 text-grey-darkest">
+      <%= gettext("Obrigado por se interessar!") %>
+      <%= gettext("A partir de agora, você irá receber uma mensagem no email") %>
+      <strong><%= @email %></strong>
+      <%= gettext("toda vez que um novo post for publicado.") %>
+    </div>
+  </div>
+</div>

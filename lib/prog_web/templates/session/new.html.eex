@@ -1,0 +1,17 @@
+<div class="content mx-auto">
+  <div class="bg-white border rounded shadow p-5 mt-8">
+    <%= form_for @conn, Routes.session_path(@conn, :create), fn f -> %>
+      <label class="field">
+        <%= gettext("E-email") %>
+        <%= email_input f, :email %>
+      </label>
+
+      <label class="field">
+        <%= gettext("Senha") %>
+        <%= password_input f, :password %>
+      </label>
+
+      <%= submit gettext("Entrar"), class: "button" %>
+    <% end %>
+  </div>
+</div>

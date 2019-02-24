@@ -7,7 +7,7 @@ defmodule ProgWeb.NewsletterSubscriptionControllerTest do
       "email" => "luiz@example.com"
     })
 
-    assert json_response(conn, 200)
+    assert html_response(conn, 200)
   end
 
   test "POST /newsletter_subscriptions - fails to subscribe twice", %{conn: conn} do
@@ -17,6 +17,6 @@ defmodule ProgWeb.NewsletterSubscriptionControllerTest do
       "email" => "luiz@example.com"
     })
 
-    assert json_response(conn, 422)
+    assert html_response(conn, 422)
   end
 end

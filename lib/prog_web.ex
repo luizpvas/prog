@@ -44,6 +44,7 @@ defmodule ProgWeb do
       import ProgWeb.Gettext
       import ProgWeb.DateHelpers
       import ProgWeb.TagHelpers
+      import ProgWeb.AuthHelpers
       alias ProgWeb.Router.Helpers, as: Routes
     end
   end

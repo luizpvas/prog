@@ -1,6 +1,8 @@
-<div>
-  <%= form_for @changeset, Routes.post_path(@conn, :create), fn f -> %>
-    <%= render "_form.html", f: f %>
-    <%= submit gettext("Inserir Post") %>
-  <% end %>
+<div class="mx-auto content">
+  <div class="mt-8">
+    <%= form_for @changeset, Routes.post_path(@conn, :create), fn f -> %>
+      <%= render "_form.html", f: f %>
+      <%= submit gettext("Inserir Post"), class: "button" %>
+    <% end %>
+  </div>
 </div>

@@ -1,0 +1,12 @@
+<div class="content mx-auto">
+  <div class="bg-white border rounded text-center p-4 mt-8">
+    <h1 class="text-blue"><%= gettext("Parece que você já está inscrito.") %></h1>
+    <div class="mt-2 text-grey-darkest">
+      <%= gettext("O email") %>
+      <strong><%= @email %></strong>
+      <%= gettext("já faz parte da mailing list.") %>
+      <br>
+      <%= gettext("De qualquer forma, obrigado por se interessar uma segunda vez!") %>
+    </div>
+  </div>
+</div>

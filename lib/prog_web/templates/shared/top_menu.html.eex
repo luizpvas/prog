@@ -1,5 +1,10 @@
 <div class="mx-auto flex mt-2" style="max-width: 740px;">
-  <div class="mr-auto"></div>
+  <div class="italic text-grey-darker mr-auto">
+    <%= if logged_in?(@conn) do %>
+      <%= gettext("Logado com") %>
+      <%= current_user_email(@conn) %>
+    <% end %>
+  </div>
 
   <a class="font-bold text-blue hover:text-blue-dark mr-3" href="/">
     <%= gettext("Home") %>

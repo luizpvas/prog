@@ -39,8 +39,11 @@ defmodule ProgWeb.PostControllerTest do
       conn
       |> login_admin()
       |> post(Routes.post_path(conn, :create, %{
-        "title" => "Interesting post",
-        "body"  => "This is definetly interesting"
+        "post" => %{
+          "title" => "Interesting post",
+          "body"  => "This is definetly interesting",
+          "published_at" => "2019-08-30"
+        }
       }))
 
     assert html_response(conn, 302)
@@ -52,8 +55,10 @@ defmodule ProgWeb.PostControllerTest do
       conn
       |> login_admin()
       |> post(Routes.post_path(conn, :create, %{
-        "title" => "",
-        "body"  => ""
+        "post" => %{
+          "title" => "",
+          "body"  => ""
+        }
       }))
 
     assert html_response(conn, 200)

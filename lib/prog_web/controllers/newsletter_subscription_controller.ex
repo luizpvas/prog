@@ -9,11 +9,14 @@ defmodule ProgWeb.NewsletterSubscriptionController do
   Attempts to subscribe aemail new email to the newsletter.
   """
   def create(conn, params) do
-    with {:ok, email} <- Newsletter.subscribe(params["email"]) do
-      json(conn, %{
-        id: email.id,
-        email: email.email
-      })
+    case Newsletter.subscribe(params["email"]) do
+      {:ok, email} ->
+        render(conn, "success.html", email: params["email"])
+
+      {:error, _changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render("already_subscribed.html", email: params["email"])
     end
   end
 end

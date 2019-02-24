@@ -13,6 +13,20 @@
     <%= render ProgWeb.PostView , "_post.html", post: post, conn: @conn %>
   <% end %>
 
+  <div class="mt-8 mb-8 p-4 border-2 border-dashed border-yellow-dark bg-yellow-lightest">
+    <div class="text-grey-darkest">
+      <div class="text-yellow-darker">
+        <%= gettext("Se inscreva na mailing list e receba um aviso quando novos conteúdos forem postados.") %>
+      </div>
+      <div class="italic text-grey-darker">Nenhum spam será enviado, prometo!</div>
+    </div>
+
+    <%= form_for @conn, Routes.newsletter_subscription_path(@conn, :create), [class: "flex mt-3", target: "_blank"], fn f -> %>
+      <input class="w-3/4 p-2 border border-grey rounded-l" type="email" name="email" placeholder="luiz@example.com">
+      <button class="w-1/4 bg-blue rounded-r text-white uppercase text-sm" type="submit"><%= gettext("Inscreva-se") %></button>
+    <% end %>
+  </div>
+
   <div class="text-center mt-6">
     <a class="text-blue" href="<%= Routes.post_path(@conn, :index) %>">
       <%= gettext("Todos os episódios »") %>
