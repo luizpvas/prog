@@ -64,4 +64,11 @@
 
 .content {
   max-width: 740px;
+	@apply .p-3;
+}
+
+@screen md {
+	.content {
+		@apply .p-0;
+	}
 }

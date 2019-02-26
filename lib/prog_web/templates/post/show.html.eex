@@ -1,21 +1,24 @@
 <div class="content mx-auto">
 
-  <h1 class="text-blue mt-6 mb-4"><%= @post.title %></h1>
-    <div class="flex items-center">
-      <div class="uppercase font-bold text-grey-dark text-sm mr-auto">
-        <%= date_release(@post.inserted_at) %>
+  <h1 class="text-blue text-xl md:text-3xl mt-6"><%= @post.title %></h1>
+
+  <div class="flex items-center">
+    <div class="uppercase font-bold text-grey-dark text-sm mr-auto">
+      <%= date_release(@post.inserted_at) %>
+      &mdash;
+      <%= gettext("Chapter") %> <%= @post.id %>
+      <%= if admin?(@conn) do %>
         &mdash;
-        <%= gettext("Episódio") %> <%= @post.id %>
-        <%= if admin?(@conn) do %>
-          &mdash;
-          <a class="text-grey-darker" href="<%= Routes.post_path(@conn, :edit, @post.slug) %>"><%= gettext("Editar") %></a>
-        <% end %>
-      </div>
-
-      <%= post_tags(@post.tags) %>
+        <a class="text-grey-darker" href="<%= Routes.post_path(@conn, :edit, @post.slug) %>"><%= gettext("Edit") %></a>
+      <% end %>
     </div>
 
-    <div class="mt-2">
-      <%= raw @post.body_html %>
-    </div>
+    <%= post_tags(@post.tags) %>
+  </div>
+
+  <div class="mt-2">
+    <%= raw @post.body_html %>
+  </div>
+
+  <%= render ProgWeb.SharedView, "_newsletter_subscription.html", conn: @conn %>
 </div>

@@ -9,7 +9,7 @@ defmodule ProgWeb.DateHelpers do
 
   """
   def date_release(date) do
-    {:ok, format} = Timex.lformat(date, "{D} de {Mfull} de {YYYY}", Gettext.get_locale())
+    {:ok, format} = Timex.lformat(date, "{Mshort} {D}, {YYYY}", Gettext.get_locale())
     format
   end
 

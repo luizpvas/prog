@@ -1,26 +1,22 @@
 <div class="content mx-auto">
-  <div class="bg-white border text-center mt-8">
+  <div class="bg-white border text-left mt-8">
     <div class="border-t-4 border-yellow"></div>
 
-    <div class="p-6">
-      <h1 class="text-blue"><%= gettext("Opa, parece que você já está inscrito.") %></h1>
+    <div class="p-3 md:p-6">
+      <h1 class="text-blue text-xl"><%= gettext("Oops, looks like you're already subscribed.") %></h1>
       <div class="mt-2 text-grey-darkest">
         <%= if @email do %>
-          <%= gettext("O email") %>
+          <%= gettext("The email") %>
           <strong><%= @email %></strong>
-          <%= gettext("já faz parte da mailing list.") %>
+          <%= gettext("is already subscribed to the mailing list.") %>
         <% else %>
-          <%= gettext("O seu email já faz parte da mailing list.") %>
+          <%= gettext("Your email is already subscribed to the mailing list.") %>
         <% end %>
 
         <br>
 
-        <%= gettext("De qualquer forma, obrigado por se interessar uma segunda vez!") %>
-
-        <br>
-
         <div class="mt-3">
-          <%= link gettext("« Voltar"), to: "/", class: "text-grey-dark" %>
+          <%= link gettext("« Back"), to: "/", class: "text-grey-dark" %>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ function init(elm) {
 	loadSimpleMDE(() => {
 		let editor = new SimpleMDE({
 			element: elm.querySelector('textarea'),
-			spellChecker: false
+			spellChecker: true
 		})
 	})
 }

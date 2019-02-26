@@ -10,10 +10,12 @@ defmodule Prog.Application do
     children = [
       # Start the Ecto repository
       Prog.Repo,
+
       # Start the endpoint when the application starts
-      ProgWeb.Endpoint
+      ProgWeb.Endpoint,
+
       # Starts a worker by calling: Prog.Worker.start_link(arg)
-      # {Prog.Worker, arg},
+      {ConCache, [name: :prog_cache, ttl_check_interval: :timer.seconds(5), global_ttl: :timer.seconds(60)]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -1,16 +1,20 @@
-<div class="mx-auto flex mt-2" style="max-width: 740px;">
+<div class="mx-auto block text-center md:text-left md:flex mt-2" style="max-width: 740px;">
   <div class="italic text-grey-darker mr-auto">
     <%= if logged_in?(@conn) do %>
-      <%= gettext("Autenticado como") %>
+      <%= gettext("Authenticated as") %>
       <strong><%= current_user_email(@conn) %></strong>
     <% end %>
   </div>
+
+  <%= if admin?(@conn) do %>
+    <%= link gettext("New post"), to: Routes.post_path(@conn, :new), class: "font-bold text-blue hover:text-blue-dark mr-3" %>
+  <% end %>
 
   <a class="font-bold text-blue hover:text-blue-dark mr-3" href="/">
     <%= gettext("Home") %>
   </a>
 
   <a class="font-bold text-blue hover:text-blue-dark" href="<%= Routes.post_path(@conn, :index) %>">
-    <%= gettext("Todos os posts »") %>
+    <%= gettext("All posts »") %>
   </a>
 </div>

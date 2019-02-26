@@ -66,8 +66,8 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-# Set the default locale to portuguese.
-config :gettext, :default_locale, "pt"
+# Set the default locale to english.
+config :gettext, :default_locale, "en"
 
 # Configure your database
 config :prog, Prog.Repo,

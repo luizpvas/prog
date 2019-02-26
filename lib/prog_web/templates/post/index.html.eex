@@ -1,7 +1,33 @@
 <div class="content mx-auto">
   <div class="mt-8">
-    <%= for post <- @posts do %>
-      <%= render "_post.html", post: post, conn: @conn %>
+    <div class="uppercase text-sm text-grey-darker font-bold mb-1"><%= gettext("Filters") %></div>
+
+    <%= form_for @conn, Routes.post_path(@conn, :index), [class: "block md:flex", method: "get"], fn f -> %>
+      <%= text_input f, 
+            :q,
+            class: "w-full md:w-3/4 border rounded px-3 py-2 md:py-0 mr-2",
+            placeholder: gettext("Search...") %>
+
+      <%= select f,
+            :tag,
+            allowed_tags(),
+            prompt: gettext("All tags"),
+            class: "w-full md:w-1/4 mt-2 md:mt-0 border bg-white rounded py-2",
+            onchange: "this.form.submit();" %>
+    <% end %>
+
+    <%= if Enum.empty? @posts do %>
+      <div class="text-xl text-center text-grey-darker mt-8">
+        <%= gettext("Sorry, could not find any posts matching your search :(") %>
+      </div>
+    <% else %>
+      <div class="uppercase text-sm text-grey-darker font-bold mt-6 -mb-2">
+        <%= gettext("Articles") %>
+        (<%= Enum.count(@posts) %>)
+      </div>
+      <%= for post <- @posts do %>
+        <%= render "_post.html", post: post, conn: @conn %>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -1,11 +1,6 @@
 # Prog
 
-- Verificar tags SEO para o google
-	- Título do post
-
-- Implementar pesquisa por posts
-	- title
-	- tags
+- Verificar tags SEO para o google - Título do post
 
 # Primeiros posts
 
@@ -18,7 +13,7 @@
   - Fazer alguns testes mostrando a diferença
   - Quem está fazendo a descompressão? R: chrome, firefox, edge.
   - Quem está fazendo a compressão? Nginx. Em que momento? Para cada requisição.
-  - Gerar um arquivo gzip uma única vez pelo phoenix e habilitar gzip\_static no nginx
+  - Gerar um arquivo gzip uma única vez pelo phoenix e habilitar gzip_static no nginx
   - Mostrar que não fez muita diferença no tempo de resposta.
 - Removendo classes não utilizadas com purge-css
   - Nós podemos ajudar ainda mais o gzip e remover aquilo que não estamos usando
@@ -29,29 +24,6 @@
   - Newsletter avisando quando tiver vídeo novo
   - Armazenar os emails
     - email (unique)
-    - canceled\_at (null)
+    - canceled_at (null)
   - Mostrar widget na página inicial para a pessoa preencher o email e se inscrever
   - Próximo ep: mandando emails
-
-Olá, esse é o primeiro video sobre a implementação de um sistema
-de newsletter para esse projeto que vocês estão vendo na tela.
-Eu comecei esse projeto para divulgar aulas/tutoriais/conteúdos sobre
-programação funcional e performance.
-Isso tudo foi ontem em um momento de inspiração, vamos ver se vai dar certo.
-
-Essa newsletter é responsável por enviar emails para as pessoas inscritas quando algum
-conteúdo novo for postado (estiver disponível no site). A ideia principal é essa.
-
-Eu vou dividir em três videos:
-
-- inscrição (back-end e widget)
-- envio
-- cancelamento
-
-Antes de começar, um aviso. Revendo o video agora, e eu percebi que fui direto ao ponto, até de mais. Talvez esse não seja o conteúdo mais amigável para quem está começando
-com elixir. Ainda estou pegando prática, então tenha paciência comigo hehe.
-
-Uma outra coisa que eu quero comentar antes, é que vocês vão ver o nome do projeto e dos módulos como Prog, de Programação.
-Foi o que pensei na hora quando gerei o projeto, e vocês podem ver que sou bem criativo.
-
-Então, agora sim, vamos começar.

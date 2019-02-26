@@ -1,5 +1,5 @@
 defmodule Prog.Blog do
-  alias Prog.Blog.Post
+  alias Prog.Blog.{Post, PostQueries}
   alias Prog.Repo
   import Ecto.Query
 
@@ -23,18 +23,52 @@ defmodule Prog.Blog do
 
   """
   def list_latest_published_posts(limit) do
-    Post
-    |> where([p], not is_nil(p.published_at))
-    |> order_by([p], [desc: :id])
-    |> limit([p], ^limit)
-    |> Repo.all()
+    Prog.Cache.get_or_store("latest_posts_#{limit}", fn ->
+      Post
+      |> PostQueries.is_published()
+      |> PostQueries.latest()
+      |> limit([p], ^limit)
+      |> Repo.all()
+    end)
   end
 
+  @doc """
+  Searches for posts based on the given criteria.
+
+  ## Supported filters
+
+    * "q" - Applied to title and description using Postgre's fulltext search.
+    * "tag" - Applied to the tags list.
+
+  ## Examples
+
+      iex> Blog.search_posts(%{"q" => "Gzip"})
+      [%Post{...}, %Post{...}]
+
+  """
+  def search_posts(criteria) do
+    PostQueries.search(criteria)
+  end
+
+  @doc """
+  Attempts to find a post by the given slug.
+
+  ## Examples
+  
+      iex> Blog.find_post_by_slug("existing-post")
+      {:ok, %Post{...}}
+
+      iex> Blog.find_post_by_slug("invalid-slug")
+      {:error, :not_found}
+
+  """
   def find_post_by_slug(slug) do
-    case Repo.get_by(Post, slug: slug) do
-      nil -> {:error, :not_found}
-      post -> {:ok, post}
-    end
+    Prog.Cache.get_or_store("post/" <> slug, fn ->
+      case Repo.get_by(Post, slug: slug) do
+        nil -> {:error, :not_found}
+        post -> {:ok, post}
+      end
+    end)
   end
 
   @doc """

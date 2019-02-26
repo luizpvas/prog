@@ -8,8 +8,19 @@ defmodule ProgWeb.PostController do
 
   Lists all available posts on the database.
   """
-  def index(conn, _params) do
-    posts = Blog.list_latest_published_posts(500)
+  def index(conn, params) do
+    # Can I make this check shorter?
+    has_filters? = 
+      (params["q"] && params["q"] != "") ||
+        (params["tag"] && params["tag"] != "")
+
+    posts =
+      if has_filters? do
+        Blog.search_posts(params)
+      else
+        Blog.list_latest_published_posts(500)
+      end
+
     render(conn, "index.html", posts: posts)
   end
 

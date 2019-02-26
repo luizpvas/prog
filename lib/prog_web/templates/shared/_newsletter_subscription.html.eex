@@ -1,0 +1,20 @@
+<div class="mt-8 mb-8 p-4 border-2 border-dashed border-yellow-dark bg-yellow-lightest">
+  <div class="text-grey-darkest">
+    <div class="text-yellow-darker">
+      <%= gettext("Subscribe to the mailing list to get notified whenever a new article gets published.") %>
+    </div>
+    <div class="italic text-grey-darker"><%= gettext("I won't send any spam, I promise!") %></div>
+  </div>
+
+  <%= form_for @conn,
+        Routes.newsletter_subscription_path(@conn, :create),
+        [class: "block md:flex mt-3"], 
+        fn f -> %>
+    <%= text_input f, :email,
+        class: "w-full md:w-3/4 p-2 border border-grey rounded-l",
+        placeholder: "luiz@example.com" %>
+
+    <%= submit gettext("Subscribe"),
+        class: "w-full p-2 mt-2 md:w-1/4 md:p-0 md:mt-0 bg-blue rounded-r text-white uppercase font-bold text-sm" %>
+  <% end %>
+</div>

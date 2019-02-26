@@ -1,11 +1,11 @@
-<div class="mx-auto px-6 md:px-0" style="max-width: 740px;">
+<div class="mx-auto content">
   <div class="text-center mt-6">
     <img src="<%= Routes.static_path(@conn, "/images/logo.svg") %>" class="w-24">
   </div>
 
   <div class="text-grey-darkest mt-6 mb-6 text-center italic">
-    <%= gettext "Textos sobre performance, escalabidade e programação funcional." %>
-    <%= gettext "Se você se interessa por algum desses tópicos, está no lugar certo." %>
+    <%= gettext "Articles about performance, scalability and functional programming." %>
+    <%= gettext "If you're interested in one of those things, you're in the right place." %>
   </div>
 
 
@@ -13,49 +13,32 @@
     <%= render ProgWeb.PostView , "_post.html", post: post, conn: @conn %>
   <% end %>
 
-  <div class="mt-8 mb-8 p-4 border-2 border-dashed border-yellow-dark bg-yellow-lightest">
-    <div class="text-grey-darkest">
-      <div class="text-yellow-darker">
-        <%= gettext("Se inscreva na mailing list e receba um aviso quando novos conteúdos forem postados.") %>
-      </div>
-      <div class="italic text-grey-darker">Nenhum spam será enviado, prometo!</div>
-    </div>
-
-    <%= form_for @conn,
-Routes.newsletter_subscription_path(@conn, :create),
-        [class: "flex mt-3", target: "_blank"], 
-        fn f -> %>
-      <%= text_input f, :email,
-          class: "w-3/4 p-2 border border-grey rounded-l",
-          placeholder: "luiz@example.com" %>
-
-      <%= submit gettext("Inscreva-se"),
-          class: "w-1/4 bg-blue rounded-r text-white uppercase font-bold text-sm" %>
-    <% end %>
-  </div>
+  <%= render ProgWeb.SharedView, "_newsletter_subscription.html", conn: @conn %>
 
   <div class="text-center mt-6">
     <a class="text-blue" href="<%= Routes.post_path(@conn, :index) %>">
-      <%= gettext("Todos os posts »") %>
+      <%= gettext("All posts »") %>
     </a>
   </div>
 </div>
 
 <div class="mt-8 py-8 bg-indigo text-white" id="about-me">
   <div class="mx-auto px-6 md:px-0" style="max-width: 740px;">
-    <div class="block md:flex md:items-center text-center md:text-left">
+    <div class="block md:flex md:items-center text-left">
       <a class="inline-block mr-4 flex-no-shrink" style="width: 90px;" href="https://twitter.com/luizpvasc">
+        <!--
         <img class="block rounded-full border border-white" style="width: 90px;" src="<%= Routes.static_path(@conn, "/images/profile_picture.jpg") %>">
+        -->
       </a>
 
       <div>
-        <div class="uppercase font-bold text-indigo-lighter"><%= gettext("Sobre mim") %></div>
+        <div class="uppercase font-bold text-indigo-lighter"><%= gettext("About me") %></div>
 
-        <%= gettext("Olá, me chamo Luiz Paulo.") %>
-        <%= gettext("Sou formado em Sistemas de Informação com especialização em Mineração de dados. Sim, diplomas são supervalorizados.") %>
-        <%= gettext("Atualmente sou CTO na") %>
-        <a class="text-white" href="http://aloweb.com.br">aloweb</a>
-        <%= gettext("implementando sistemas de comunicação em tempo real.") %>
+        <%= gettext("Hello, my name is Luiz.") %>
+        <%= gettext("I have the two best cats in the world and I love functional programming and optimizing things.") %>
+        <%= gettext("I've been working as a software developer for the past six years.") %>
+        <%= gettext("I'm currently building soft realtime communication systems at") %>
+        <a class="text-white" href="https://teclia.com">Teclia.com</a>.
       </div>
     </div>
   </div>

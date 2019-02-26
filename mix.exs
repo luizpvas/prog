@@ -45,7 +45,8 @@ defmodule Prog.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:ex_machina, "~> 2.2", only: :test},
       {:timex, "~> 3.1"},
-      {:earmark, "~> 1.3"}
+      {:earmark, "~> 1.3"},
+      {:con_cache, "~> 0.13.0"}
     ]
   end
 
